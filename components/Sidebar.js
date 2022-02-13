@@ -34,6 +34,10 @@ const Wrapper = styled.div`
   border-right: 1px solid #282b2f;
   width: calc(22rem - 16px - 16px);
   padding: 0 1rem;
+  overflow-y: scroll;
+  ::-webkit-scroll {
+    display: none;
+  }
 `
 
 const LogoContainer = styled.div`
