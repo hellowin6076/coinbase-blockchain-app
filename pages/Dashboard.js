@@ -24,19 +24,19 @@ const Dashboard = ({ address }) => {
       const coins = await fetch(
         "https://p5yyxcto.api.sanity.io/v1/data/query/production?query=*%5B_type%3D%3D'coins'%5D%7B%0A%20%20name%2C%0A%20%20usdPrice%2C%0A%20%20contractAddress%2C%0A%20%20symbol%2C%0A%20%20logo%0A%7D"
       )
-      const sanityTokens = (await coins.json()).result
 
+      const sanityTokens = (await coins.json()).result
       setSanityTokens(sanityTokens)
 
       setThirdWebTokens(
         sanityTokens.map((token) => sdk.getTokenModule(token.contractAddress))
       )
     }
-
     return getSanityAndThirdWebTokens()
   }, [])
+
   // console.log("Sanity", sanityTokens)
-  // console.log("Thirdweb", thirdWebTokens)
+  //console.log("Thirdweb", thirdWebTokens)
 
   return (
     <Wrapper>
