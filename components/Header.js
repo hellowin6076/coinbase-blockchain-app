@@ -7,7 +7,12 @@ import Link from "next/link"
 
 Modal.setAppElement("#__next")
 
-const Header = ({ walletAddress, connectWallet }) => {
+const Header = ({
+  walletAddress,
+  sanityTokens,
+  connectWallet,
+  thirdWebTokens,
+}) => {
   const router = useRouter()
 
   const customStyles = {
@@ -48,7 +53,11 @@ const Header = ({ walletAddress, connectWallet }) => {
         onRequestClose={() => router.push("/")}
         style={customStyles}
       >
-        <TransferModal />
+        <TransferModal
+          sanityTokens={sanityTokens}
+          thirdWebTokens={thirdWebTokens}
+          walletAddress={walletAddress}
+        />
       </Modal>
     </Wrapper>
   )
