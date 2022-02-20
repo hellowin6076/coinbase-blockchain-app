@@ -2,7 +2,8 @@ import React, { useState } from "react"
 import styled from "styled-components"
 import Transfer from "./Transfer"
 import Coinselector from "./Coinselector"
-
+import { TailSpin } from "react-loader-spinner"
+import Receive from "./Receive"
 const TransferModal = ({ thirdWebTokens, walletAddress, sanityTokens }) => {
   const [action, setAction] = useState("send")
   const [selectedToken, setSelectedToken] = useState(sanityTokens[0])
@@ -26,7 +27,13 @@ const TransferModal = ({ thirdWebTokens, walletAddress, sanityTokens }) => {
           />
         )
       case "receive":
-        return <h2>receive</h2>
+        return (
+          <Receive
+            setAction={setAction}
+            selectedToken={selectedToken}
+            walletAddress={walletAddress}
+          />
+        )
       case "select":
         return (
           <Coinselector
@@ -37,6 +44,43 @@ const TransferModal = ({ thirdWebTokens, walletAddress, sanityTokens }) => {
             thirdWebTokens={thirdWebTokens}
             walletAddress={walletAddress}
           />
+        )
+      case "transferring":
+        return (
+          <div
+            style={{
+              width: "100%",
+              height: "100%",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              fontSize: "1.5rem",
+            }}
+          >
+            <h2>transferring...</h2>
+            <TailSpin
+              height="100"
+              width="100"
+              color="#3773f5"
+              ariaLabel="loading"
+            />
+          </div>
+        )
+      case "transferred":
+        return (
+          <div
+            style={{
+              width: "100%",
+              height: "100%",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              fontSize: "2rem",
+              color: "#27ad75",
+            }}
+          >
+            Transfer complete
+          </div>
         )
       default:
         return <h2>send</h2>
