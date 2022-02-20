@@ -45,7 +45,7 @@ const Transfer = ({
     if (activeThirdWebToken && amount && recipient) {
       const tx = await activeThirdWebToken.transfer(
         recipient,
-        amount.toString().concat("0000000000000")
+        amount.toString().concat("000000000000000000")
       )
       console.log(tx)
       setAction("transferred")
@@ -64,7 +64,7 @@ const Transfer = ({
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
           />
-          <span>ETH</span>
+          <span>{selectedToken.symbol}</span>
         </FlexInputContainer>
         <Warning style={{ color: amount && "#0a0b0d" }}>
           Amount is a required field
@@ -85,7 +85,7 @@ const Transfer = ({
         <Divider />
         <Row>
           <FieldName>Pay with</FieldName>
-          <CoinSelectList>
+          <CoinSelectList onClick={() => setAction("select")}>
             <Icon>
               <img src={imageUrl} />
             </Icon>
